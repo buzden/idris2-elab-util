@@ -223,7 +223,7 @@ unApp = run []
 |||
 ||| See `appNames` for an example
 public export %inline
-appAll : Name -> List TTImp -> TTImp
+appAll : Foldable f => Name -> f TTImp -> TTImp
 appAll fun = foldl (.$) (var fun)
 
 ||| Applies a list of variable names to a function.
@@ -231,7 +231,7 @@ appAll fun = foldl (.$) (var fun)
 ||| Example: appNames "either" ["f","g","val"]
 |||          is equivalent to ~(either f g val)
 public export %inline
-appNames : (fun : Name) -> (args : List Name) -> TTImp
+appNames : Foldable f => Functor f => (fun : Name) -> (args : f Name) -> TTImp
 appNames fun = appAll fun . map var
 
 ||| Binds a list of parameters to a data constructor in
@@ -240,7 +240,7 @@ appNames fun = appAll fun . map var
 ||| Example: bindAll "MkPair" ["a","b"]
 |||          is the same as `(MkPair a b)
 public export %inline
-bindAll : (fun : Name) -> (args : List String) -> TTImp
+bindAll : Foldable f => Functor f => (fun : Name) -> (args : f String) -> TTImp
 bindAll fun = appAll fun . map bindVar
 
 ||| Applying an auto-implicit.
@@ -378,18 +378,18 @@ public export %inline
 
 ||| Defines a function type taking the given arguments.
 public export %inline
-piAll : TTImp -> List Arg -> TTImp
+piAll : Foldable f => TTImp -> f Arg -> TTImp
 piAll res = foldr (.->) res
 
 ||| Defines a function type taking implicit arguments of the
 ||| given names.
 public export %inline
-piAllImplicit : TTImp -> List Name -> TTImp
+piAllImplicit : Foldable f => Functor f => TTImp -> f Name -> TTImp
 piAllImplicit res = piAll res . map erasedImplicit
 
 ||| Defines a function type taking the given auto-implicit arguments.
 public export
-piAllAuto : TTImp -> List TTImp -> TTImp
+piAllAuto : Foldable f => Functor f => TTImp -> f TTImp -> TTImp
 piAllAuto res = piAll res . map (MkArg MW AutoImplicit Nothing)
 
 --------------------------------------------------------------------------------
