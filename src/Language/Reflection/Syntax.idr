@@ -250,13 +250,6 @@ export
 lam : Arg False -> (lamTy : TTImp) -> TTImp
 lam (MkArg c p n t) = ILam EmptyFC c p n t
 
-infixr 3 .=>
-
-||| Infix alias for `lam`.
-export
-(.=>) : Arg False -> TTImp -> TTImp
-(.=>) = lam
-
 --------------------------------------------------------------------------------
 --          Function Types
 --------------------------------------------------------------------------------

@@ -98,8 +98,7 @@ conveniently define nested function applications.
 A similar layout is used for nested function declarations
 (data constructor `IPi` and nesting operator `->` with
 available infix operator `(.->)`)
-and lambdas (data constructor `ILam` and nesting
-operator `=>`; infix operator `(.=>)`):
+and lambdas (data constructor `ILam`):
 
 ```repl
 Language.Reflection.Pretty> :exec putPretty `(Show a => (val : a) -> String)
