@@ -301,6 +301,7 @@ mutual
   Pretty FnOpt where
     prettyPrec _ Inline         = "Inline"
     prettyPrec _ NoInline       = "NoInline"
+    prettyPrec _ Memoise        = "Memoise"
     prettyPrec _ TCInline       = "TCInline"
     prettyPrec _ Deprecate      = "Deprecate"
     prettyPrec p (Hint x)       = apply p "Hint" [x]
