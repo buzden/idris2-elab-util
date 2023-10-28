@@ -22,6 +22,7 @@ import public Text.PrettyPrint.Prettyprinter
 import Text.PrettyPrint.Prettyprinter.Render.String
 import Language.Reflection.Syntax
 import Language.Reflection.Types
+import Language.Reflection.TTImp
 
 %default total
 
@@ -238,6 +239,9 @@ Pretty Constant where
 --          Pretty instance for TTImp
 --------------------------------------------------------------------------------
 
+export
+Pretty a => Pretty (WithDefault a def') where
+  prettyPrec = onWithDefault "defaulted" . prettyPrec
 
 export
 Pretty BindMode where
