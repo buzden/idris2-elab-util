@@ -7,7 +7,7 @@ docs_pkg = elab-util-docs.ipkg
 test_pkg = elab-util-test.ipkg
 
 .PHONY: all
-all: lib docs test
+all: lib test
 
 .PHONY: clean-install
 clean-install: clean install
