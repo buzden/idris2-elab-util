@@ -117,7 +117,7 @@ export
 app : TTImp -> TTImp -> TTImp
 app = IApp EmptyFC
 
-infixl 6 .$
+export infixl 6 .$
 
 ||| Infix version of `app`
 |||
@@ -261,7 +261,7 @@ export
 pi : Arg False -> (retTy : TTImp) -> TTImp
 pi (MkArg c p n t) = IPi EmptyFC c p n t
 
-infixr 5 .->
+export infixr 5 .->
 
 ||| Infix alias for `pi`.
 export
@@ -305,7 +305,7 @@ export
 patClause : (lhs : TTImp) -> (rhs : TTImp) -> Clause
 patClause = PatClause EmptyFC
 
-infixr 3 .=
+export infixr 3 .=
 
 ||| Infix alias for `patClause`
 export
